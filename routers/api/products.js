@@ -3,27 +3,20 @@ const products = require('../../models/products.json')
 
 const router = express.Router();
 
-router.use((req, res, next) => {
-    console.log('in products');
-    next();
-});
 
-router.get((req, res) => {
+router.get (async (req, res) => {
     const alt = await products.getAll();
     res.json(all);
 });
 
-router.get('/id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     const product = await products.getById(id);
     res.json(product);
 });
 
-router.post('/', async (req, res) => {
-    console.log(req.body);
-    const { price, name } = req.body;
-    await products.create(price, name);
-    res.status(201).end()
+router.put('/:id', async (req, res) => {
+   
 })
 
 module.exports = router
