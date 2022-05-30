@@ -1,4 +1,6 @@
 const uuid = require('uuid');
+const fs = require('fs').promises;
+const path = require('path');
 
 const productPath = path.join(__dirname, 'products.json');
 
@@ -23,6 +25,7 @@ const create = async (price, name) => {
 
     const allProducts = await getAll();
     allProducts.push(newProduct);
+    
     await fs.writeFile(productPath, JSON.stringify(allProducts, null, 2));
     return newProduct;
 }
