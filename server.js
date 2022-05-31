@@ -1,9 +1,11 @@
-const app = require('./app');
+const mongoose = require('mongoose');
 
-const PORT = process.env.PORT || 8081;
+main().catch(err => console.log(err));
+const DB_HOST = 'mongodb+srv://testuser:840270aaa@cluster0.mgfa48c.mongodb.net/products?retryWrites=true&w=majority';
+async function main() {
+  await mongoose.connect(DB_HOST);
+}
 
-app.listen(PORT, () => {
-    console.log(`Server is on ${PORT}`);
-})
-
-//process.env
+main().then(() => {
+    console.log('DB conected')
+}).catch(err => console.log(err));
