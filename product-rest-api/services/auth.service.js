@@ -1,5 +1,5 @@
 const {User} = require('../models/user');
-const {createError} = require("../helpers/errors");
+const {createError} = require("../helpers/error");
 const bcrypt = require('bcryptjs');
 
 
