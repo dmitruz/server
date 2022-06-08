@@ -1,11 +1,15 @@
-const mongoose = require('mongoose');
+const app = require('./app')
+const mongoose = require('mongoose')
+require('dotenv').config();
 
-main().catch(err => console.log(err));
-const DB_HOST = 'mongodb+srv://testuser:<840270aaa>@cluster0.mgfa48c.mongodb.net/products?retryWrites=true&w=majority';
-async function main() {
-  await mongoose.connect(DB_HOST);
-}
+const { PORT = 3000, DB_HOST } = process.env;
 
-main().then(() => {
-    console.log('DB conected')
-}).catch(err => console.log(err));
+mongoose.connect(DB_HOST).then(() => {
+    console.log('DB is working')
+    app.listen(PORT)
+}).then(() => {
+    console.log(`Server is on ${PORT}`)
+}).catch((err) => {
+    console.log('ERROR', err)
+    process.exit(1)
+})
