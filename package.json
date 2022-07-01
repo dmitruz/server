@@ -18,8 +18,8 @@
     "nodemon": "^2.0.16"
   },
   "scripts": {
-    "start": " node ./lessons/process.js",
-    "dev": "nodemon server"
+    "start": "nodemon index.js"
+   
   },
   "repository": {
     "type": "git",
