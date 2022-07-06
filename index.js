@@ -1,46 +1,23 @@
-// const doteenv = require('doteenv')
-// doteenv.config()
-
-// console.log(process.env.PORT);
-// console.log(process.env.NODE_ENV);
+const express = require('express')
+const mongoose = require('mongoose')
 
 
-// sozdali fail
+const PORT = process.env.PORT || 3000
+const app = express()
 
-// const chalk = require('chalk')
-// const text = require('./lessons/data')
 
-// console.log(chalk.blue(text))
-
-// fs.readFile(filePath, (err, content) => {
-//     if (err) {
-//         throw err
-//     }
-//     const data = Buffer.from(content)
-//     console.log('Content:', data.toString())
-// })
-
-const http = require('http')
-const fs = require('fs')
-const path = require('path')
-
-const server = http.createServer((req, res) => {
-    
-
-    if (req.url === '/') {
-        fs.readFile(path.join(__dirname, 'public', 'index.html'), (err, data) => {
-            if (err) {
-                throw err
-            }
-            res.writeHead(200, {
-        'Content-Type': 'text/html'
-    })
-    res.end(data)
+async function start() {
+    try {
+        await mongoose.connect('', {
+            useNewUrlParser: true,
+            useFindAndModify: false
         })
-    }
-
-})
-
-server.listen(3000, () => {
+        app.listen(PORT, () => {
     console.log('Server has been started...')
 })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+start()
